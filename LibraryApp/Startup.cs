@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LibraryApp.Models.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,6 +25,9 @@ namespace LibraryApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            var dbConnectionString = @"Server=(localdb)\mssqllocaldb;Database=LibraryDB;Trusted_Connection=True";
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(dbConnectionString)); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
