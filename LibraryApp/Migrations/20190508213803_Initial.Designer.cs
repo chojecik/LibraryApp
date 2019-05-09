@@ -7,12 +7,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 
 namespace LibraryApp.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20190508203429_Initial")]
+    [Migration("20190508213803_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,26 +22,6 @@ namespace LibraryApp.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.3-rtm-10026")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("LibraryApp.Models.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("City");
-
-                    b.Property<string>("LocalNumber");
-
-                    b.Property<string>("Street");
-
-                    b.Property<int>("StreetNumber");
-
-                    b.Property<string>("ZipCode");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Addresses");
-                });
 
             modelBuilder.Entity("LibraryApp.Models.Book", b =>
                 {
@@ -59,11 +40,13 @@ namespace LibraryApp.Migrations
 
                     b.Property<int?>("UserId");
 
+                    b.Property<string>("UserId1");
+
                     b.Property<int>("YearOfPublishment");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Books");
                 });
@@ -73,19 +56,15 @@ namespace LibraryApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AddressId");
+                    b.Property<int>("Gender");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("IdentityId");
 
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<string>("Phone");
+                    b.Property<int>("Role");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("IdentityId");
 
                     b.ToTable("Users");
                 });
@@ -143,6 +122,9 @@ namespace LibraryApp.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -182,6 +164,8 @@ namespace LibraryApp.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -249,19 +233,41 @@ namespace LibraryApp.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("LibraryApp.Models.AppUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("LocalNumber");
+
+                    b.Property<string>("Street");
+
+                    b.Property<int>("StreetNumber");
+
+                    b.Property<string>("ZipCode");
+
+                    b.ToTable("AppUser");
+
+                    b.HasDiscriminator().HasValue("AppUser");
+                });
+
             modelBuilder.Entity("LibraryApp.Models.Book", b =>
                 {
-                    b.HasOne("LibraryApp.Models.User", "User")
+                    b.HasOne("LibraryApp.Models.AppUser", "User")
                         .WithMany("Books")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("LibraryApp.Models.User", b =>
                 {
-                    b.HasOne("LibraryApp.Models.Address", "Address")
+                    b.HasOne("LibraryApp.Models.AppUser", "Identity")
                         .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("IdentityId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

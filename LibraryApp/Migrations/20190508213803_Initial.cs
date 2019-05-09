@@ -10,23 +10,6 @@ namespace LibraryApp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Addresses",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    City = table.Column<string>(nullable: true),
-                    LocalNumber = table.Column<string>(nullable: true),
-                    Street = table.Column<string>(nullable: true),
-                    StreetNumber = table.Column<int>(nullable: false),
-                    ZipCode = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Addresses", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -44,9 +27,17 @@ namespace LibraryApp.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
+                    City = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    LocalNumber = table.Column<string>(nullable: true),
+                    Street = table.Column<string>(nullable: true),
+                    StreetNumber = table.Column<int>(nullable: true),
+                    ZipCode = table.Column<string>(nullable: true),
                     Id = table.Column<string>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
                     LockoutEnabled = table.Column<bool>(nullable: false),
@@ -63,29 +54,6 @@ namespace LibraryApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AddressId = table.Column<int>(nullable: false),
-                    Email = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Users_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -206,15 +174,37 @@ namespace LibraryApp.Migrations
                     Status = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: true),
+                    UserId1 = table.Column<string>(nullable: true),
                     YearOfPublishment = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Books", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Books_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
+                        name: "FK_Books_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Gender = table.Column<int>(nullable: false),
+                    IdentityId = table.Column<string>(nullable: true),
+                    Role = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_AspNetUsers_IdentityId",
+                        column: x => x.IdentityId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -259,14 +249,14 @@ namespace LibraryApp.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Books_UserId",
+                name: "IX_Books_UserId1",
                 table: "Books",
-                column: "UserId");
+                column: "UserId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_AddressId",
+                name: "IX_Users_IdentityId",
                 table: "Users",
-                column: "AddressId");
+                column: "IdentityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -290,16 +280,13 @@ namespace LibraryApp.Migrations
                 name: "Books");
 
             migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Addresses");
         }
     }
 }

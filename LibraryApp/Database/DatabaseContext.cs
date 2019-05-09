@@ -13,7 +13,7 @@ namespace LibraryApp.Models.Database
 
         new public DbSet<User> Users { get; set; }
         public DbSet<Book> Books { get; set; }
-        public DbSet<Address> Addresses { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
 
     }
 }

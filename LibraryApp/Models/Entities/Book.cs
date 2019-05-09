@@ -16,7 +16,7 @@ namespace LibraryApp.Models
         public StatusType Status { get; set; }
 
         public virtual int? UserId { get; set; }
-        public virtual User User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 
     public enum StatusType
