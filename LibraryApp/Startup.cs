@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using LibraryApp.Auth;
+using LibraryApp.Auth.Interfaces;
+using LibraryApp.Database;
 using LibraryApp.Helpers;
 using LibraryApp.Models;
-using LibraryApp.Models.Database;
+using LibraryApp.Models.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,9 +40,15 @@ namespace LibraryApp
             services.AddAutoMapper();
             services.AddMvc();
 
-            services.AddDbContext<DatabaseContext>(options =>
-           options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-               b => b.MigrationsAssembly("LibraryApp")));
+            // services.AddDbContext<DatabaseContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            //    b => b.MigrationsAssembly("LibraryApp")));
+
+            var dbConnectionString = @"Server=(localdb)\mssqllocaldb;Database=LibraryDB;Trusted_Connection=True";
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(dbConnectionString));
+
+            services.AddSingleton<IJwtFactory, JwtFactory>();
+            services.AddSingleton<IMapper, Mapper>();
 
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
 
@@ -114,8 +123,9 @@ namespace LibraryApp
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
-
+          
+            app.UseStaticFiles();   
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryApp.Auth.Interfaces
 {
-    interface IJwtFactory
+    public interface IJwtFactory
     {
         Task<string> GenerateEncodedToken(string userName, ClaimsIdentity identity);
         ClaimsIdentity GenerateClaimsIdentity(string userName, string id);
