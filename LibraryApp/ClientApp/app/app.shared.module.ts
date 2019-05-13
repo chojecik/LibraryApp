@@ -11,6 +11,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { RegistrationFormComponent } from './components/account/registration-form/registration-form.component';
 import { LoginFormComponent } from './components/account/login-form/login-form.component';
+//import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
     declarations: [
@@ -21,8 +22,10 @@ import { LoginFormComponent } from './components/account/login-form/login-form.c
         HomeComponent,
         RegistrationFormComponent,
         LoginFormComponent
+        //SpinnerComponent
     ],
     imports: [
+        //SpinnerComponent,
         CommonModule,
         HttpModule,
         FormsModule,
@@ -30,10 +33,10 @@ import { LoginFormComponent } from './components/account/login-form/login-form.c
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
-            { path: '**', redirectTo: 'home' },
+            { path: 'fetch-data', component: FetchDataComponent },  
             { path: 'register', component: RegistrationFormComponent },
-            { path: 'login', component: LoginFormComponent }
+            { path: 'login', component: LoginFormComponent },
+            { path: '**', redirectTo: 'home' }
         ])
     ]
 })
