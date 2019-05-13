@@ -9,6 +9,8 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
+import { RegistrationFormComponent } from './components/account/registration-form/registration-form.component';
+import { LoginFormComponent } from './components/account/login-form/login-form.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +18,9 @@ import { CounterComponent } from './components/counter/counter.component';
         NavMenuComponent,
         CounterComponent,
         FetchDataComponent,
-        HomeComponent
+        HomeComponent,
+        RegistrationFormComponent,
+        LoginFormComponent
     ],
     imports: [
         CommonModule,
@@ -27,7 +31,9 @@ import { CounterComponent } from './components/counter/counter.component';
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
-            { path: '**', redirectTo: 'home' }
+            { path: '**', redirectTo: 'home' },
+            { path: 'register', component: RegistrationFormComponent },
+            { path: 'login', component: LoginFormComponent }
         ])
     ]
 })
