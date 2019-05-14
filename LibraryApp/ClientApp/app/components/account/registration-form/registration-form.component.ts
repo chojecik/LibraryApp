@@ -20,6 +20,7 @@ export class RegistrationFormComponent implements OnInit{
     ngOnInit() { }
 
     registerUser({ value, valid }: { value: UserRegistration, valid: boolean }) {
+        debugger;
         this.submitted = true;
         this.isRequesting = true;
         this.errors = '';

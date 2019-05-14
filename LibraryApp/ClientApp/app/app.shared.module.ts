@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-
+import { EmailValidator } from './directives/email.validator.directive';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -23,7 +23,8 @@ import { ConfigService } from './utils/config.service'
         FetchDataComponent,
         HomeComponent,
         RegistrationFormComponent,
-        LoginFormComponent
+        LoginFormComponent,
+        EmailValidator
         //SpinnerComponent
     ],
     imports: [

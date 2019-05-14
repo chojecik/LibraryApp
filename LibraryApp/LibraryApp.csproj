@@ -24,10 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\directives\email.validator.directive.ts" />
     <None Remove="ClientApp\app\models\user.registration.interface.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\directives\email.validator.directive.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\user.registration.interface.ts" />
   </ItemGroup>
 
