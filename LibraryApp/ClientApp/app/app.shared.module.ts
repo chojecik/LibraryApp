@@ -11,6 +11,8 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { RegistrationFormComponent } from './components/account/registration-form/registration-form.component';
 import { LoginFormComponent } from './components/account/login-form/login-form.component';
+import { UserService } from './services/user.service';
+import { ConfigService } from './utils/config.service'
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
@@ -38,6 +40,10 @@ import { LoginFormComponent } from './components/account/login-form/login-form.c
             { path: 'login', component: LoginFormComponent },
             { path: '**', redirectTo: 'home' }
         ])
+    ],
+    providers: [
+        UserService,
+        ConfigService
     ]
 })
 export class AppModuleShared {
