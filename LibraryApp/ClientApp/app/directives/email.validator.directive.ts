@@ -3,10 +3,10 @@ import { NG_VALIDATORS, FormControl } from '@angular/forms';
 
 function validateEmailFactory() {
     return (c: FormControl) => {
-        let EMAIL_REGEXP = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+        let EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
         
 
-        return EMAIL_REGEXP.test(c.value) ? null : {
+        return EMAIL_REGEX.test(c.value) ? null : {
             validateEmail: {
                 valid: false
             }

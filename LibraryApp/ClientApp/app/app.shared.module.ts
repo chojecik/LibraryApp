@@ -4,6 +4,7 @@ import { FormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { EmailValidator } from './directives/email.validator.directive';
+import { PasswordValidator } from './directives/password.validator.directive';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -24,7 +25,8 @@ import { ConfigService } from './utils/config.service'
         HomeComponent,
         RegistrationFormComponent,
         LoginFormComponent,
-        EmailValidator
+        EmailValidator,
+        PasswordValidator
         //SpinnerComponent
     ],
     imports: [

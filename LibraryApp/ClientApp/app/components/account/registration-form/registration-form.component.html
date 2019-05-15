@@ -22,7 +22,8 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password" ngModel>
+                <input type="password" validatePassword class="form-control" id="password" name="password" placeholder="Password" ngModel #password="ngModel">
+                <small [hidden]="password.valid || (password.pristine && !submitted)" class="text-danger">Password must contain at least 8 characters, one uppercase character, one lowercase character, one alphacumerical character and one special character</small>
             </div>
 
             <div class="form-group">
