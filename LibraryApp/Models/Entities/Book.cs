@@ -15,7 +15,7 @@ namespace LibraryApp.Models.Entities
         public int YearOfPublishment { get; set; }
         public StatusType Status { get; set; }
 
-        public virtual int? UserId { get; set; }
+        public virtual string UserId { get; set; }
         public virtual AppUser User { get; set; }
     }
 

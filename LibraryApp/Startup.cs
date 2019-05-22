@@ -10,6 +10,8 @@ using LibraryApp.Database;
 using LibraryApp.Helpers;
 using LibraryApp.Models;
 using LibraryApp.Models.Entities;
+using LibraryApp.Models.Interfaces;
+using LibraryApp.Models.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -104,7 +106,8 @@ namespace LibraryApp
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
             builder.AddEntityFrameworkStores<DatabaseContext>().AddDefaultTokenProviders();
 
-
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IAppUserRepository, AppUserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
