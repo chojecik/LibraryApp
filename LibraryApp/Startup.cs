@@ -108,7 +108,7 @@ namespace LibraryApp
 
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
-        }
+        } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

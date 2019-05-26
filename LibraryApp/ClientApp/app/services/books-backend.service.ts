@@ -12,5 +12,5 @@ export abstract class BooksBackendService {
 
     abstract updateBook(updatedBook: Book): Observable<number>;
 
-    abstract deleteBook(book: Book): Observable<number>;
+    abstract deleteBook(id: number): Observable<number>;
 }

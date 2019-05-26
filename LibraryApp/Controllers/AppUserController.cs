@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LibraryApp.Controllers
 {
     [Produces("application/json")]
-    [Route("api/AppUser")]
+    [Route("api/[controller]")]
     public class AppUserController : Controller
     {
         private readonly IAppUserRepository _repository;
@@ -19,13 +19,13 @@ namespace LibraryApp.Controllers
             _repository = repository;
         }
 
-        [HttpGet("action")]
+        [HttpGet("[action]")]
         public IActionResult GetAllUsers()
         {
             return new JsonResult(_repository.GetAllUsers());
         }
 
-        [HttpGet("action")]
+        [HttpGet("[action]")]
         public IActionResult GetUser(string userName)
         {
             return new JsonResult(_repository.GetAppUser(userName));

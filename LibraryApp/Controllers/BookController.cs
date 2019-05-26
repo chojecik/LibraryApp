@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using LibraryApp.Models.Entities;
 using LibraryApp.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace LibraryApp.Controllers
 {
-    //[Produces("application/json")]
-    //[Route("api/Book")]
+    [Produces("application/json")]
+    [Route("api/[controller]")]
     public class BookController : Controller
     {
         private readonly IBookRepository _repository;
@@ -19,19 +20,20 @@ namespace LibraryApp.Controllers
             _repository = repository; 
         }
 
-        [HttpGet("action")]
+        [HttpGet("[action]")]
         public IActionResult GetAllBooks()
         {
+            var json = new JsonResult(_repository.GetAllBooks());
             return new JsonResult(_repository.GetAllBooks());
         }
 
-        [HttpGet("action")]
+        [HttpGet("[action]")]
         public IActionResult GetBook(int bookId)
         {
             return new JsonResult(_repository.GetBook(bookId));
         }
 
-        [HttpPost("action")]
+        [HttpPost("[action]")]
         public IActionResult AddBook([FromBody] Book book)
         {
             if(!ModelState.IsValid)
@@ -43,7 +45,7 @@ namespace LibraryApp.Controllers
             return new JsonResult(book.Id);
         }
 
-        [HttpPut("action")]
+        [HttpPut("[action]")]
         public IActionResult UpdateBook([FromBody] Book book) 
         {
             if (!ModelState.IsValid)
@@ -54,7 +56,7 @@ namespace LibraryApp.Controllers
             return new JsonResult(book.Id);
         }
 
-        [HttpGet("action")]
+        [HttpGet("[action]")]
         public IActionResult DeleteBook(int bookId)
         {
             if (!ModelState.IsValid)
