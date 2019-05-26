@@ -1,0 +1,38 @@
+﻿<div>
+    <div>
+        <h2>
+            {{pageTitle}}
+        </h2>
+    </div>
+    <div style="margin-top: 15px; margin-right: 25px">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th class="col-md-1 col-sm-1 col-xs-1">No.</th>
+                    <th class="col-md-1 col-sm-1 col-xs-1">Title</th>
+                    <th class="col-md-1 col-sm-1 col-xs-1">Author</th>
+                    <!--<th class="col-md-1 col-sm-1 col-xs-1">Genre</th>
+                    <th class="col-md-1 col-sm-1 col-xs-1">Number of pages</th>-->
+                    <th class="col-md-1 col-sm-1 col-xs-1">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of books let i = index" [attr.data.index]="i">
+                    <td class="col-md-1 col-sm-1 col-xs-1">{{i + 1}}</td> 
+                    <td class="col-md-1 col-sm-1 col-xs-1">{{book.title}}</td> 
+                    <td class="col-md-1 col-sm-1 col-xs-1">{{book.author}}</td> 
+                    <!--<td class="col-md-1 col-sm-1 col-xs-1">{{book.genre}}</td> 
+                    <td class="col-md-1 col-sm-1 col-xs-1">{{book.numberOfPages}}</td>--> 
+                    <td class="col-md-1 col-sm-1 col-xs-1">{{book.status}}</td> 
+                    <td class="col-md-1 col-sm-1 col-xs-1"><button class="btn btn-primary" (click)="getBook(book.id)">Details</button></td>
+                    <td class="col-md-1 col-sm-1 col-xs-1"><button class="btn btn-success" (click)="updateBook(book.id)">Update</button></td>
+                    <td class="col-md-1 col-sm-1 col-xs-1"><button class="btn btn-danger" (click)="deleteBook(book.id)">Delete</button></td>
+                </tr>
+                <tr *ngIf="books.length == 0">
+                    <td style="text-align: center" colspan="8">{{tableEmptyInfo}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+ 

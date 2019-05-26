@@ -1,0 +1,44 @@
+﻿<div>
+    <div style="margin-top: 25px">
+        <h2>
+            {{pageTitle}}   
+        </h2>
+    </div>
+    <div style="margin-top: 25px; margin-bottom: 50px">
+        <form #bookForm="ngForm" (ngSubmit)="onSubmit(book)">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input [disabled]="!isInEditMode" required class="form-control" id="title" [(ngModel)]="book.title" name="title" type="text" />
+            </div>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input [disabled]="!isInEditMode" required class="form-control" id="author" [(ngModel)]="book.author" name="author" type="text" />
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <select [disabled]="!isInEditMode" required class="form-control" id="genre" [(ngModel)]="book.genre" name="genre" #type="ngModel">
+                    <option></option>
+                    <option value="1">Crime story</option>
+                    <option value="2">Thriller</option>
+                    <option value="3">Fantasy</option>
+                    <option value="4">Belles Lettres</option>
+                    <option value="5">Drama</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="numberOfPages">Number of pages</label>
+                <input [disabled]="!isInEditMode" required class="form-control" id="numberOfPages" [(ngModel)]="book.numberOfPages" name="numberOfPages" type="number" />
+            </div>
+            <div class="form-group">
+                <label for="yearOfPublishment">Year of publishment</label>
+                <input [disabled]="!isInEditMode" required class="form-control" id="yearOfPublishment" [(ngModel)]="book.yearOfPublishment" name="yearOfPublishment" type="number" />
+            </div>
+            <div *ngIf="isInEditMode">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <a (click)="goBack()" class="btn btn-default">Go back</a>
+    </div>
+</div>

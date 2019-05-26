@@ -28,7 +28,10 @@
     <None Remove="ClientApp\app\directives\password.validator.directive.ts" />
     <None Remove="ClientApp\app\models\appUser.ts" />
     <None Remove="ClientApp\app\models\book.ts" />
+    <None Remove="ClientApp\app\models\enums\genre.ts" />
+    <None Remove="ClientApp\app\models\enums\status.ts" />
     <None Remove="ClientApp\app\models\user.registration.interface.ts" />
+    <None Remove="ClientApp\app\pipes\status.pipe.ts" />
     <None Remove="ClientApp\app\services\books-backend.service.ts" />
     <None Remove="ClientApp\app\services\http-books-backend.service.ts" />
   </ItemGroup>
@@ -38,7 +41,10 @@
     <TypeScriptCompile Include="ClientApp\app\directives\password.validator.directive.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\appUser.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\book.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\enums\genre.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\enums\status.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\user.registration.interface.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pipes\status.pipe.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\books-backend.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\http-books-backend.service.ts" />
   </ItemGroup>

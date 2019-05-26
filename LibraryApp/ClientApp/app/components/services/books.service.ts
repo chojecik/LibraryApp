@@ -21,7 +21,7 @@ export class BooksService {
         return this.booksBackendService.getAllBooks();
     }
 
-    updateBook(updatedBook: Book): Observable<number> { //mozliwe ze tutaj musi byc Book
+    updateBook(updatedBook: Book): Observable<number> {
         return this.booksBackendService.updateBook(updatedBook);
     }
 
