@@ -18,11 +18,11 @@
                 <label for="genre">Genre</label>
                 <select [disabled]="!isInEditMode" required class="form-control" id="genre" [(ngModel)]="book.genre" name="genre" #type="ngModel">
                     <option></option>
-                    <option value="1">Crime story</option>
-                    <option value="2">Thriller</option>
-                    <option value="3">Fantasy</option>
-                    <option value="4">Belles Lettres</option>
-                    <option value="5">Drama</option>
+                    <option value="0">Crime story</option>
+                    <option value="1">Thriller</option>
+                    <option value="2">Fantasy</option>
+                    <option value="3">Belles Lettres</option>
+                    <option value="4">Drama</option>
                 </select>
             </div>
             <div class="form-group">

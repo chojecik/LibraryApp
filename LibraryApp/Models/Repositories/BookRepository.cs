@@ -23,7 +23,7 @@ namespace LibraryApp.Models.Repositories
             {
                 throw new Exception("Book object cannot be null");
             }
-
+            book.Status = StatusType.Available;
             _dbContext.Books.Add(book);
             _dbContext.SaveChanges();
             return book.Id;

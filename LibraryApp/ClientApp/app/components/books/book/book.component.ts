@@ -48,10 +48,12 @@ export class BookComponent implements OnInit {
 
     deleteBook(id: number): void {
         this.booksService.deleteBook(id).subscribe(
-            onSuccess => console.log(onSuccess),
+            onSuccess => {
+                console.log(onSuccess);
+                this.books.splice(this.books.findIndex(book => book.id == id), 1);
+            },
             onError => console.log(onError)
         );
-        this.books.splice(this.books.findIndex(book => book.id == id), 1);
     }
 
 

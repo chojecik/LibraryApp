@@ -16,7 +16,8 @@ import { BookComponent } from './components/books/book/book.component';
 import { BooksService } from './components/services/books.service';
 import { BooksBackendService } from './services/books-backend.service';
 import { HttpBookBackendService } from './services/http-books-backend.service';
-import {BookDetailsComponent } from './components/books/book-details/book-details.component'
+import { BookDetailsComponent } from './components/books/book-details/book-details.component';
+import { StatusPipe } from './pipes/status.pipe';
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
@@ -29,7 +30,8 @@ import {BookDetailsComponent } from './components/books/book-details/book-detail
         EmailValidator,
         PasswordValidator,
         BookComponent,
-        BookDetailsComponent
+        BookDetailsComponent,
+        StatusPipe
         //SpinnerComponent
     ],
     imports: [

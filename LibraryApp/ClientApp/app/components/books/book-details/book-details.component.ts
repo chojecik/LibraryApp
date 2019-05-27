@@ -16,7 +16,8 @@ export class BookDetailsComponent {
     constructor(
         private booksService: BooksService,
         private acticatedRoute: ActivatedRoute,
-        private location: Location
+        private location: Location,
+        private router: Router
     ) { };
 
     pageTitle: string = "Book details";
@@ -54,14 +55,15 @@ export class BookDetailsComponent {
             this.booksService.addBook(book).subscribe(
                 onSuccess => console.log(onSuccess),
                 onError => console.log(onError)
-            )
+            );
         }
-        else if (this.location.isCurrentPathEqualTo("/books/book-update")) {
+        else {
             this.booksService.updateBook(book).subscribe(
                 onSuccess => console.log(onSuccess),
                 onError => console.log(onError)
             )
         }
+        this.router.navigate(["/book"]);
     }
 
     detectUrlParam(): void {

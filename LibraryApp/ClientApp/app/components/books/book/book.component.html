@@ -23,7 +23,7 @@
                     <td class="col-md-1 col-sm-1 col-xs-1">{{book.author}}</td> 
                     <!--<td class="col-md-1 col-sm-1 col-xs-1">{{book.genre}}</td> 
                     <td class="col-md-1 col-sm-1 col-xs-1">{{book.numberOfPages}}</td>--> 
-                    <td class="col-md-1 col-sm-1 col-xs-1">{{book.status}}</td> 
+                    <td class="col-md-1 col-sm-1 col-xs-1">{{book.status | statusPipe}}</td> 
                     <td class="col-md-1 col-sm-1 col-xs-1"><button class="btn btn-primary" (click)="getBook(book.id)">Details</button></td>
                     <td class="col-md-1 col-sm-1 col-xs-1"><button class="btn btn-success" (click)="updateBook(book.id)">Update</button></td>
                     <td class="col-md-1 col-sm-1 col-xs-1"><button class="btn btn-danger" (click)="deleteBook(book.id)">Delete</button></td>

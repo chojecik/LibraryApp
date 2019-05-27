@@ -1,13 +1,19 @@
 ﻿import { PipeTransform, Pipe } from "@angular/core";
 
 @Pipe({
-    name: 'status',
+    name: 'statusPipe',
     pure: true
 })
 export class StatusPipe implements PipeTransform {
     constructor() { }
 
-    transform(value: any, args?: any): Status {
-        return value;
+    transform(value: number, args?: any): string {
+        if (value == 1) {
+            return "Available";
+        }
+        else if (value == 2) {
+            return "Borrowed";
+        }
+        else return "Reserved";
     }
 }
