@@ -45,11 +45,5 @@ namespace LibraryApp.Controllers
 
             return new OkObjectResult("Account created");
         }
-
-        [HttpGet("[action]")]
-        public IActionResult Test()
-        {
-            return null;
-        }
     }
 }

@@ -18,6 +18,8 @@ import { BooksBackendService } from './services/books-backend.service';
 import { HttpBookBackendService } from './services/http-books-backend.service';
 import { BookDetailsComponent } from './components/books/book-details/book-details.component';
 import { StatusPipe } from './pipes/status.pipe';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
@@ -39,6 +41,8 @@ import { StatusPipe } from './pipes/status.pipe';
         CommonModule,
         HttpModule,
         FormsModule,
+        BrowserModule,
+        BrowserAnimationsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },

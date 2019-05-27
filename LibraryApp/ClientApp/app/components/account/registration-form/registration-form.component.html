@@ -25,7 +25,26 @@
                 <input type="password" validatePassword class="form-control" id="password" name="password" placeholder="Password" ngModel #password="ngModel">
                 <small [hidden]="password.valid || (password.pristine && !submitted)" class="text-danger">Password must contain at least 8 characters, one uppercase character, one lowercase character, one alphacumerical character and one special character</small>
             </div>
-
+            <div class="form-group">
+                <label for="street">Street</label>
+                <input type="text" class="form-control" id="street" placeholder="Street" name="street" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="streetNumber">Street number</label>
+                <input type="number" class="form-control" id="streetNumber" placeholder="Street number" name="streetNumber" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="localNumber">Local number</label>
+                <input type="text" class="form-control" id="localNumber" placeholder="Local number" name="localNumber" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" placeholder="City" name="city" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="zipCode">Zip code</label>
+                <input type="text" class="form-control" id="zipCode" placeholder="XX-XXX" name="zipCode" ngModel>
+            </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">Sign Up</button>
                 <!--<app-spinner [isRunning]="isRequesting"></app-spinner>  TODO-->

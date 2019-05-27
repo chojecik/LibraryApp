@@ -26,9 +26,9 @@ export class UserService extends BaseService{
         this.baseUrl = configService.getApiURI();
     }
 
-    register(email: string, password: string, firstName: string, lastName: string): Observable<UserRegistration> {
+    register(email: string, password: string, firstName: string, lastName: string, street: string, streetNumber: number, localNumber: string, city: string, zipCode: string): Observable<UserRegistration> {
         debugger;
-        let body = JSON.stringify({ email, password, firstName, lastName });
+        let body = JSON.stringify({ email, password, firstName, lastName, street, streetNumber, localNumber, city, zipCode });
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
@@ -56,13 +56,13 @@ export class UserService extends BaseService{
             .catch(this.handleError);
     }
 
-    logout() {
+    logout(): void {
         localStorage.removeItem('auth_token');
         this.loggedIn = false;
         this._authNavStatusSource.next(false);
     }
 
-    isLoggedIn() {
-        return this.loggedIn;
-    }
+    //isLoggedIn(): Observable<boolean> {
+    //    return this.loggedIn;
+    //}
 }

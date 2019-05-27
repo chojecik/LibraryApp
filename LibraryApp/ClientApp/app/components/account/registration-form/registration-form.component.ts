@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
-import { UserRegistration } from '../../../models/user.registration.interface';
+import { AppUser } from '../../../models/appUser';
 
 @Component({
     selector: 'app-registration-form',
@@ -19,14 +19,23 @@ export class RegistrationFormComponent implements OnInit{
 
     ngOnInit() { }
 
-    registerUser({ value, valid }: { value: UserRegistration, valid: boolean }) {
+    registerUser({ value, valid }: { value: AppUser, valid: boolean }) {
         debugger;
         this.submitted = true;
         this.isRequesting = true;
         this.errors = '';
 
         if (valid) {
-            this.userService.register(value.email, value.password, value.firstName, value.lastName)
+            this.userService.register(
+                value.email,
+                value.password,
+                value.firstName,
+                value.lastName,
+                value.street,
+                value.streetNumber,
+                value.localNumber,
+                value.city,
+                value.zipCode)
                 .finally(() => this.isRequesting = false)
                 .subscribe(
                     (result: any) => {if (result) {
